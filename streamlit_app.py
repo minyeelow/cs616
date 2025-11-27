@@ -1,6 +1,12 @@
-import replicate
+import os
 import streamlit as st
 import pandas as pd
+import replicate
+
+# Replicate API token input (sidebar)
+replicate_token = st.sidebar.text_input('Enter your Replicate API token:', type='password', key='replicate_token')
+if replicate_token:
+    os.environ['REPLICATE_API_TOKEN'] = replicate_token
 
 # Load anime dataset
 @st.cache_data
@@ -78,7 +84,6 @@ with st.container():
     st.header("2. Review Your Anime List")
 
     with st.container():
-        st.markdown("**Selected Anime:**")
         st.caption("ℹ️ Your selected anime goes here")
         if selected_anime:
             for idx, name in enumerate(selected_anime):
@@ -107,7 +112,7 @@ def generate_recommendation(selected_anime, df):
     anime_list = df['Name'].tolist()
     anime_list_str = str(anime_list)
     prompt = (
-        f"Describe what is common in these anime: {', '.join(selected_anime)}. "
+        f"Describe the user's preferences like Spotify rewind, based on these selections: {', '.join(selected_anime)}. "
         f"Only recommend an anime that can be found in this Python list: {anime_list_str}. "
         f"Ensure that the reccomendation fits the description of {additional_prompt} and is not already in {', '.join(selected_anime)}."
         "The last line of the output must be Recommendation: (anime name)"
