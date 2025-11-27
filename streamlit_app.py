@@ -16,7 +16,7 @@ def load_data():
 
 df = load_data()
 
-st.title("Anime Recommendation App")
+st.title("[CS616 Assignment 2 - Min Yee] Anime Recommendation App")
 st.markdown("Ever wished you had Spotify Rewind and recommendations for Crunchyroll? This app takes the 2023 MyAnimeList database and does exactly that. Simply input your favourite animes, or things you'd like to see and get back your Anime Taste Profile and another anime for you to watch!")
 
 # Search bar
