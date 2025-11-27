@@ -1,4 +1,4 @@
-
+import replicate
 import streamlit as st
 import pandas as pd
 
@@ -104,7 +104,6 @@ if submit and selected_anime:
 st.header("4. Here's Your Taste Profile and Recommendation!")
 
 def generate_recommendation(selected_anime, df):
-    import replicate
     anime_list = df['Name'].tolist()
     anime_list_str = str(anime_list)
     prompt = (
